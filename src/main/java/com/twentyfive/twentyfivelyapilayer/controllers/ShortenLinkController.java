@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/public/shorten-link")
+@RequestMapping("/shorten-link")
 @CrossOrigin(origins = "*")
 public class ShortenLinkController {
     @Autowired
@@ -24,7 +24,7 @@ public class ShortenLinkController {
     @PostMapping("/generate")
     public ResponseEntity<Object> generateShortenLink(@RequestBody RequestValue requestValue) {
         String username = authenticationService.getUsername();
-        ResponseValue result = shortenLinkController.generateShortenLink(requestValue);
+        ResponseValue result = shortenLinkController.generateShortenLink(requestValue, username);
         return ResponseEntity.ok().body(result);
     }
 
@@ -45,7 +45,7 @@ public class ShortenLinkController {
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Object> deleteLink(@PathVariable String id) {
         String username = authenticationService.getUsername();
-        ShortenLink result = shortenLinkController.deleteLink(id);
+        ResponseValue result = shortenLinkController.deleteLink(id);
         return ResponseEntity.ok().body(result);
     }
 }
