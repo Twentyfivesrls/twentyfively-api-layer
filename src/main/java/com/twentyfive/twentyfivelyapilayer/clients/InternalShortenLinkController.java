@@ -13,7 +13,7 @@ import java.util.List;
 public interface InternalShortenLinkController {
 
     @RequestMapping(method = RequestMethod.POST, value="/generate")
-    ResponseValue generateShortenLink(@RequestBody RequestValue requestValue, @RequestParam("username") String username);
+    ResponseValue generateShortenLink(@RequestBody RequestValue requestValue);
 
     @RequestMapping(method = RequestMethod.GET, value="/get-complete-link/{shortUrl}")
     List<ShortenLink> getCompleteShortenLink(@PathVariable String shortUrl);
@@ -21,6 +21,6 @@ public interface InternalShortenLinkController {
     @RequestMapping(method = RequestMethod.GET, value="/list/{userId}")
     List<ShortenLink> getAllLinksForUserId(@PathVariable String userId);
 
-    @RequestMapping(method = RequestMethod.GET, value="/delete/{id}")
+    @RequestMapping(method = RequestMethod.DELETE, value="/delete/{id}")
     ResponseValue deleteLink(@PathVariable String id);
 }

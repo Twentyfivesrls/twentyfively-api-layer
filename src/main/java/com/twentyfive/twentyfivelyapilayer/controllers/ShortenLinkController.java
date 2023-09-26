@@ -24,7 +24,7 @@ public class ShortenLinkController {
     @PostMapping("/generate")
     public ResponseEntity<Object> generateShortenLink(@RequestBody RequestValue requestValue) {
         String username = authenticationService.getUsername();
-        ResponseValue result = shortenLinkController.generateShortenLink(requestValue, username);
+        ResponseValue result = shortenLinkController.generateShortenLink(requestValue);
         return ResponseEntity.ok().body(result);
     }
 
