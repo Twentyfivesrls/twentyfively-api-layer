@@ -16,7 +16,7 @@ import java.util.List;
 @CrossOrigin(origins = "*")
 public class ShortenLinkController {
     @Autowired
-    private InternalShortenLinkController shortenLinkController;
+    private InternalShortenLinkController internalLinkController;
 
     @Autowired
     private AuthenticationService authenticationService;
@@ -24,28 +24,28 @@ public class ShortenLinkController {
     @PostMapping("/generate")
     public ResponseEntity<Object> generateShortenLink(@RequestBody RequestValue requestValue) {
         String username = authenticationService.getUsername();
-        ResponseValue result = shortenLinkController.generateShortenLink(requestValue);
+        ResponseValue result = internalLinkController.generateShortenLink(requestValue);
         return ResponseEntity.ok().body(result);
     }
 
     @GetMapping("/get-complete-link/{shortUrl}")
-    public ResponseEntity<Object> getCompleteShortenLink(@PathVariable String shortUrl) {
+    public ResponseEntity<String> getCompleteShortenLink(@PathVariable String shortUrl) {
         String username = authenticationService.getUsername();
-        List<ShortenLink> result = shortenLinkController.getCompleteShortenLink(shortUrl);
+        String result = internalLinkController.getCompleteShortenLink(shortUrl);
         return ResponseEntity.ok().body(result);
     }
 
     @GetMapping("/list/{userId}")
     public ResponseEntity<Object> getAllLinksForUserId(@PathVariable String userId) {
         String username = authenticationService.getUsername();
-        List<ShortenLink> result = shortenLinkController.getAllLinksForUserId(userId);
+        List<ShortenLink> result = internalLinkController.getAllLinksForUserId(userId);
         return ResponseEntity.ok().body(result);
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Object> deleteLink(@PathVariable String id) {
         String username = authenticationService.getUsername();
-        ResponseValue result = shortenLinkController.deleteLink(id);
+        ResponseValue result = internalLinkController.deleteLink(id);
         return ResponseEntity.ok().body(result);
     }
 }

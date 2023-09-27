@@ -16,7 +16,7 @@ public interface InternalShortenLinkController {
     ResponseValue generateShortenLink(@RequestBody RequestValue requestValue);
 
     @RequestMapping(method = RequestMethod.GET, value="/get-complete-link/{shortUrl}")
-    List<ShortenLink> getCompleteShortenLink(@PathVariable String shortUrl);
+    String getCompleteShortenLink(@PathVariable String shortUrl);
 
     @RequestMapping(method = RequestMethod.GET, value="/list/{userId}")
     List<ShortenLink> getAllLinksForUserId(@PathVariable String userId);
