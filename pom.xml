@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.twentyfive</groupId>
     <artifactId>twentyfively-api-layer</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
     <packaging>war</packaging>
     <name>twentyfively-api-layer</name>
     <description>twentyfively-api-layer</description>
@@ -79,6 +79,17 @@
                         </exclude>
                     </excludes>
                 </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-source-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
