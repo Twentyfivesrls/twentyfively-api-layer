@@ -13,6 +13,10 @@ jobs:
           distribution: 'adopt'
           java-version: '17'
 
+      - uses: s4u/maven-settings-action@v2.8.0
+        with:
+          servers: '[{"id": "github", "username": ${{SSH_USERNAME}}, "password": ${{SSH_GITHUB_TOKEN}}]'
+
       - name: Build with Maven
         run: mvn --batch-mode --update-snapshots clean package -DskipTests
 
@@ -21,11 +25,6 @@ jobs:
         with:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           known_hosts: unnecessary
-
-      - name: Install to GitHub Packages Apache Maven
-        run: mvn clean install -U
-        env:
-          GITHUB_TOKEN: ${{ SSH_GITHUB_TOKEN }} # GITHUB_TOKEN is the default env for the password
 
       - name: Adding Known Hosts
         run: ssh-keyscan -p ${{ secrets.SSH_PORT }} -H ${{ secrets.SSH_HOST }}  >> ~/.ssh/known_hosts
