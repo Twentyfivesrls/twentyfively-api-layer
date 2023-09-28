@@ -22,6 +22,11 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           known_hosts: unnecessary
 
+      - name: Install to GitHub Packages Apache Maven
+        run: mvn clean install -U
+        env:
+          GITHUB_TOKEN: ${{ SSH_GITHUB_TOKEN }} # GITHUB_TOKEN is the default env for the password
+
       - name: Adding Known Hosts
         run: ssh-keyscan -p ${{ secrets.SSH_PORT }} -H ${{ secrets.SSH_HOST }}  >> ~/.ssh/known_hosts
 
