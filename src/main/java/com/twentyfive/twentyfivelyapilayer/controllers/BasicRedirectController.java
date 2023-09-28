@@ -14,7 +14,7 @@ public class BasicRedirectController {
     @GetMapping("/{shortenUrl}")
     public String redirect(@PathVariable String shortenUrl, Model model){
         String destinationUrl = String.valueOf(shortenLinkController.getCompleteShortenLink(shortenUrl));
-        System.out.println("ciao");
+        System.out.println("hello");
         return "redirect:" + destinationUrl;
     }
 }
