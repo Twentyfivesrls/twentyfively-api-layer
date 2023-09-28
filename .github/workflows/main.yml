@@ -38,11 +38,11 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           script: |
             mkdir -p actions
-            cd /actions
+            cd actions
             mkdir -p dist_tomcat
-            cd /dist_tomcat
+            cd dist_tomcat
             mkdir -p ${{ secrets.PROJECT_NAME }}
-            cd /${{ secrets.PROJECT_NAME }}
+            cd ${{ secrets.PROJECT_NAME }}
 
       - name: Move build to server with rsync
         run: rsync -avz -e "ssh -p ${{ secrets.SSH_PORT }}" ./target/${{ secrets.PROJECT_NAME }}.war ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/actions/dist_tomcat/${{ secrets.PROJECT_NAME }}
