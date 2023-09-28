@@ -30,7 +30,7 @@ jobs:
         run: ssh-keyscan -p ${{ secrets.SSH_PORT }} -H ${{ secrets.SSH_HOST }}  >> ~/.ssh/known_hosts
 
       - name: Move build to server with rsync
-        run: rsync -avz -e "ssh -p ${{ secrets.SSH_PORT }}" ./target/twentyfively-api-layer.war ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/root/dist_tomcat/twentyfively-api-layer
+        run: rsync -avz -e "ssh -p ${{ secrets.SSH_PORT }}" ./target/twentyfively-api-layer.war ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/actions/dist_tomcat/twentyfively-api-layer
 
       - name: Move data inside Tomcat Container
         uses: appleboy/ssh-action@master
@@ -40,5 +40,5 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            cd /root/dist_tomcat/twentyfively-api-layer
+            cd /actions/dist_tomcat/twentyfively-api-layer
             docker cp ./ 24f1ac863dfd:/usr/local/tomcat/webapps
