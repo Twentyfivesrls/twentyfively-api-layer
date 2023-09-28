@@ -39,17 +39,11 @@ jobs:
           script: |
             cd ..
             mkdir -p actions
-            ls
             cd actions
-            ls
             mkdir -p dist_tomcat
-            ls
             cd dist_tomcat
-            ls
-            mkdir -p $ {{secrets.SSH_PROJECT_NAME}}
-            ls
-            cd $ {{secrets.SSH_PROJECT_NAME}}
-            ls
+            mkdir -p ${{ secrets.SSH_PROJECT_NAME }}
+            cd ${{ secrets.SSH_PROJECT_NAME }}
 
       - name: Move build to server with rsync
         run: rsync -avz -e "ssh -p ${{ secrets.SSH_PORT }}" ./target/${{ secrets.SSH_PROJECT_NAME }}.war ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/actions/dist_tomcat/${{ secrets.SSH_PROJECT_NAME }}
