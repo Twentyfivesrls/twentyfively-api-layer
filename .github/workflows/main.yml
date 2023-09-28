@@ -37,6 +37,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
+            cd ..
             mkdir -p actions
             ls
             cd actions
@@ -45,9 +46,9 @@ jobs:
             ls
             cd dist_tomcat
             ls
-            mkdir -p $secrets.SSH_PROJECT_NAME
+            mkdir -p $ {{secrets.SSH_PROJECT_NAME}}
             ls
-            cd $secrets.SSH_PROJECT_NAME
+            cd $ {{secrets.SSH_PROJECT_NAME}}
             ls
 
       - name: Move build to server with rsync
