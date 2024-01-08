@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -24,10 +25,11 @@ public class ShortenLinkController {
     private AuthenticationService authenticationService;
 
     @PostMapping("/generate")
-    public ResponseEntity<Object> generateShortenLink(@RequestBody RequestValue requestValue) throws URISyntaxException {
+    public ResponseEntity<Object> generateShortenLink(@RequestBody RequestValue requestValue) throws URISyntaxException, MalformedURLException {
         String username = authenticationService.getUsername();
         //don't remove it!!!! it's for URL validation
         URI uri = new URI(requestValue.getUrl());
+        requestValue.setUrl(uri.toURL().toString());
         ResponseValue result = internalLinkController.generateShortenLink(requestValue);
         return ResponseEntity.ok().body(result);
     }
