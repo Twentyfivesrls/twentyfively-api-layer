@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
 
 @RestController
@@ -22,8 +24,9 @@ public class ShortenLinkController {
     private AuthenticationService authenticationService;
 
     @PostMapping("/generate")
-    public ResponseEntity<Object> generateShortenLink(@RequestBody RequestValue requestValue) {
+    public ResponseEntity<Object> generateShortenLink(@RequestBody RequestValue requestValue) throws URISyntaxException {
         String username = authenticationService.getUsername();
+        URI uri = new URI(requestValue.getUrl());
         ResponseValue result = internalLinkController.generateShortenLink(requestValue);
         return ResponseEntity.ok().body(result);
     }
