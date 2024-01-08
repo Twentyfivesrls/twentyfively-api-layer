@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @FeignClient(name = "InternalShortenLinkController",
-        url = "http://tomcat-twentyfive-db:8091/twentyfive-db/shorten-link")
+        url = "${twentyfive.db.url}/shorten-link")
 public interface InternalShortenLinkController {
 
     @RequestMapping(method = RequestMethod.POST, value="/generate")
