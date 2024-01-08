@@ -26,6 +26,7 @@ public class ShortenLinkController {
     @PostMapping("/generate")
     public ResponseEntity<Object> generateShortenLink(@RequestBody RequestValue requestValue) throws URISyntaxException {
         String username = authenticationService.getUsername();
+        //don't remove it!!!! it's for URL validation
         URI uri = new URI(requestValue.getUrl());
         ResponseValue result = internalLinkController.generateShortenLink(requestValue);
         return ResponseEntity.ok().body(result);
