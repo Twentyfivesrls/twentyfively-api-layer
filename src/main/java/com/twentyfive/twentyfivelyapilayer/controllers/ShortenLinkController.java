@@ -27,9 +27,13 @@ public class ShortenLinkController {
     @PostMapping("/generate")
     public ResponseEntity<Object> generateShortenLink(@RequestBody RequestValue requestValue) throws URISyntaxException, MalformedURLException {
         String username = authenticationService.getUsername();
+        String urlRegex = "^((https?://)?(www\\.)?)?([\\da-z.-]+)\\.([a-z.]{2,6})(?::[0-9]{1,5})?(/[\\-a-zA-Z0-9@:%._+~#=]*)*(/[\\w/]*)*(\\?[;&a-zA-Z0-9%_.~+=-]*)?(#[\\-\\w]*)?$";
+        if (!requestValue.getUrl().matches(urlRegex)) {
+            return ResponseEntity.badRequest().body("Invalid URL");
+        }
         //don't remove it!!!! it's for URL validation
-        URI uri = new URI(requestValue.getUrl());
-        requestValue.setUrl(uri.toURL().toString());
+        //URI uri = new URI(requestValue.getUrl());
+        requestValue.setUrl(requestValue.getUrl());
         ResponseValue result = internalLinkController.generateShortenLink(requestValue);
         return ResponseEntity.ok().body(result);
     }
