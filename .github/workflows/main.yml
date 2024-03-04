@@ -40,7 +40,7 @@ jobs:
         run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=twentyfively-api-layer -Dsonar.projectName='twentyfively-api-layer'
 
   build-and-deploy:
-    if: ${{ false }} # this record is to be used to disable the deploy job and use only the sonar-gate job
+    #if: ${{ false }} # this record is to be used to disable the deploy job and use only the sonar-gate job
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
