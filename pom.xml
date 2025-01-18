@@ -52,9 +52,21 @@
 
         <dependency>
             <groupId>com.twentyfive</groupId>
-            <artifactId>twentyfive-models</artifactId>
-            <version>0.0.13</version>
+            <artifactId>twentyfive-adapters</artifactId>
+            <version>0.0.276</version>
+            <!-- exclude JPA nd MONGODB because this MS not manage the db interactions -->
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-data-jpa</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-data-mongodb</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
+
     </dependencies>
 
     <repositories>

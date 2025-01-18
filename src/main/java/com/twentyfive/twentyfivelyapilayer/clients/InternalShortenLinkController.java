@@ -1,10 +1,10 @@
 package com.twentyfive.twentyfivelyapilayer.clients;
 
-import com.twentyfive.twentyfivemodel.dto.twentyfiveLyDto.RequestValue;
-import com.twentyfive.twentyfivemodel.dto.twentyfiveLyDto.ResponseValue;
-import com.twentyfive.twentyfivemodel.models.twentyfiveLyModels.ShortenLink;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
+import twentyfive.twentyfiveadapter.dto.twlyDto.RequestValue;
+import twentyfive.twentyfiveadapter.dto.twlyDto.ResponseValue;
+import twentyfive.twentyfiveadapter.models.twlyModels.ShortenLink;
 
 import java.util.List;
 

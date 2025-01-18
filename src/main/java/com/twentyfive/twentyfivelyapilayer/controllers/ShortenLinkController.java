@@ -2,12 +2,12 @@ package com.twentyfive.twentyfivelyapilayer.controllers;
 
 import com.twentyfive.authorizationcontroller.services.AuthenticationService;
 import com.twentyfive.twentyfivelyapilayer.clients.InternalShortenLinkController;
-import com.twentyfive.twentyfivemodel.dto.twentyfiveLyDto.RequestValue;
-import com.twentyfive.twentyfivemodel.dto.twentyfiveLyDto.ResponseValue;
-import com.twentyfive.twentyfivemodel.models.twentyfiveLyModels.ShortenLink;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import twentyfive.twentyfiveadapter.dto.twlyDto.RequestValue;
+import twentyfive.twentyfiveadapter.dto.twlyDto.ResponseValue;
+import twentyfive.twentyfiveadapter.models.twlyModels.ShortenLink;
 
 import java.net.MalformedURLException;
 import java.net.URI;
